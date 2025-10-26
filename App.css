@@ -1,0 +1,305 @@
+/* App.css - drop this into your project */
+
+/* ========== CSS VARIABLES (light theme defaults) ========== */
+:root{
+  --bg: #fafafa;
+  --elements: #ffffff;
+  --text: #111517;
+  --input: #858585;
+  --shadow: 0 4px 12px rgba(16,24,40,0.08);
+  --card-radius: 8px;
+  --container-max-width: 1100px;
+  --gap: 2rem;
+  --accent: #2b6cb0; /* used for subtle accents */
+}
+
+/* Dark theme overrides when body.dark is present */
+body.dark {
+  --bg: #202c37;
+  --elements: #2b3945;
+  --text: #ffffff;
+  --input: #bfc9d2;
+  --shadow: 0 6px 18px rgba(0,0,0,0.45);
+  --accent: #90cdf4;
+}
+
+/* ========== Global ========== */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, -apple-system, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.45;
+  padding-bottom: 4rem;
+}
+
+/* remove link underline default */
+a { color: inherit; text-decoration: none; }
+
+/* center main content and constrain width */
+.main-wrapper {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 1.6rem;
+}
+
+/* ========== Header ========== */
+.header-container {
+  background: var(--elements);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.header-content {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 1rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  font-weight: 700;
+}
+
+.title a { color: var(--text); }
+
+/* theme changer button */
+.theme-changer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  user-select: none;
+}
+.theme-changer i { font-size: 0.95rem; }
+
+/* ========== Main (Home) ========== */
+.middle {
+  max-width: var(--container-max-width);
+  margin: 2rem auto;
+  padding: 0 1.6rem;
+}
+
+/* search + filter row */
+.Search-Filter-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* search container */
+.search-container {
+  background: var(--elements);
+  box-shadow: var(--shadow);
+  padding: 0.8rem 1rem;
+  border-radius: var(--card-radius);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--text);
+  width: 100%;
+}
+.search-container input::placeholder {
+  color: var(--input);
+}
+
+/* filter select */
+.filter {
+  width: 200px;
+}
+.filter-region {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--card-radius);
+  border: none;
+  background: var(--elements);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-weight: 600;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* on wider screens show search and filter side-by-side */
+@media (min-width: 760px) {
+  .Search-Filter-Container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ========== Card Grid ========== */
+.card-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* responsive columns */
+@media (min-width: 640px) {
+  .card-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .card-container { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* country card */
+.country-card {
+  background: var(--elements);
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+  color: inherit;
+}
+
+.country-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.12);
+}
+
+/* flag image container — keep aspect */
+.country-card img {
+  width: 100%;
+  display: block;
+  height: 170px;
+  object-fit: cover;
+  background: #e9eef6;
+}
+
+/* card text */
+.card-text {
+  padding: 1.15rem;
+}
+.card-title {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.card-text p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 600;
+}
+.card-text p b {
+  font-weight: 700;
+}
+
+/* ========== Country Details Page ========== */
+.country-details-container {
+  max-width: var(--container-max-width);
+  margin: 2rem auto;
+  padding: 0 1.6rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--elements);
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2rem;
+  user-select: none;
+}
+
+/* details layout: stack on small screens, side-by-side on larger screens */
+.country-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.country-details img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.details-text-container {
+  display: block;
+}
+
+.details-text-container h1 {
+  margin: 0 0 1rem 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.details-text p {
+  margin: 0.5rem 0;
+  font-size: 0.98rem;
+}
+
+/* two-column details list on wider screens */
+@media (min-width: 880px) {
+  .country-details {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .country-details img {
+    width: 48%;
+    max-height: 460px;
+  }
+
+  .details-text-container {
+    width: 52%;
+    padding-left: 2rem;
+  }
+
+  .details-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 2rem;
+  }
+}
+
+/* small niceties */
+button, .back-button, .theme-changer { transition: background .15s ease, transform .12s ease; }
+.back-button:hover { transform: translateY(-2px); }
+
+/* ========== Accessibility / Focus ========== */
+a:focus, button:focus, input:focus, select:focus {
+  outline: 3px solid rgba(59,130,246,0.18);
+  outline-offset: 2px;
+}
+
+/* ========== Utilities ========== */
+.text-muted { color: var(--input); font-weight: 600; }
+
+/* ========== End ========== */
